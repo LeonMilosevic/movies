@@ -1,4 +1,4 @@
-"""File contains types of columns in csv files."""
+"""File contains mapping for of files and columns."""
 
 from app.utils.type_annotations import MovieFiles
 
@@ -43,7 +43,7 @@ date_columns_map = {"movie": ["mov_dt_rel"]}
 pk_columns_map = {
     "movie": ["mov_id"],
     "actor_table": ["act_id"],
-    "movie_cast": ["act_id", "mov_id", 'role'],
+    "movie_cast": ["act_id", "mov_id", "role"],
     "director": ["dir_id"],
     "movie_direction": ["dir_id", "mov_id"],
     "genres": ["gen_id"],
