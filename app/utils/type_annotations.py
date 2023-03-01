@@ -1,6 +1,6 @@
 """File will contain type annotations for functions and variables."""
 
-from typing import Dict, List
+from typing import Any, Dict, List
 
 from pandas import DataFrame
 
@@ -9,3 +9,4 @@ FileHeader = List[str]
 MovieFiles = Dict[FileName, FileHeader]
 DataFrameMap = Dict[FileName, DataFrame]
 ColumnTypeMap = Dict[str, List[str]]
+Json = Dict[str, Any]

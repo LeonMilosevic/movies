@@ -27,6 +27,14 @@ def load_data_to_postgres(engine: Engine, dfs: DataFrameMap) -> None:
 
 
 def _order_tables(dfs: DataFrameMap) -> DataFrameMap:
+    """Orders tables in correct order to avoid FK dependency errors.
+
+    Args:
+        dfs: Dictionary with file name as key and DataFrame as value.
+
+    Returns:
+        Ordered dictionary with table name as key and DataFrame as value.
+    """
     return {
         "movie": dfs["movie"],
         "actor": dfs["actor_table"],

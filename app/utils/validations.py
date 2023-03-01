@@ -7,7 +7,7 @@ from app.utils.type_annotations import ColumnTypeMap, DataFrameMap
 LOGGER = logging.getLogger(__name__)
 
 
-def validate_pk(dfs: DataFrameMap, pk_fk_columns: ColumnTypeMap) -> None:
+def validate_primary_keys(dfs: DataFrameMap, pk_fk_columns: ColumnTypeMap) -> None:
     """Validate primary keys by checking for null and duplicate values.
 
     Args:

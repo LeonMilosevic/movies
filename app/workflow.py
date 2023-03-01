@@ -9,6 +9,7 @@ from app.source.transformations import apply_transformations
 from app.source.upload_data import load_data_to_postgres
 from app.utils.mapping import files
 from app.utils.secrets import db_secrets
+from app.utils.type_annotations import Json
 
 
 def run_etl(engine: Engine) -> None:
@@ -19,7 +20,7 @@ def run_etl(engine: Engine) -> None:
 
 
 if __name__ == "__main__":
-    secrets = db_secrets
+    secrets: Json = db_secrets
     sql_engine = create_engine(
         f"postgresql://"
         f"{secrets['username']}:"

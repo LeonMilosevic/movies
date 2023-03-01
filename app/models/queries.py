@@ -4,7 +4,7 @@ from sqlalchemy import Engine, text
 
 from app.utils.db_helpers import truncate_tables
 
-movies_per_year = """
+MOVIES_PER_YEAR = """
 CREATE TABLE IF NOT EXISTS movies_per_year AS (
 SELECT EXTRACT(YEAR FROM mov_dt_rel) AS release_year, COUNT(*) AS num_of_movies
 FROM movie
@@ -13,7 +13,7 @@ GROUP BY EXTRACT(YEAR FROM mov_dt_rel)
 );
 """
 
-number_of_actors_per_movie = """
+NUMBER_OF_ACTORS_PER_MOVIE = """
 CREATE TABLE IF NOT EXISTS number_of_actors_per_movie AS (
 SELECT mov_id, COUNT(act_id) AS num_of_actors
 FROM movie_cast
@@ -21,14 +21,14 @@ GROUP BY mov_id
 );
 """
 
-number_of_different_movie_genres = """
+NUMBER_OF_DIFFERENT_MOVIE_GENRES = """
 CREATE TABLE IF NOT EXISTS number_of_different_movie_genres AS (
 SELECT COUNT(DISTINCT gen_id) AS num_of_genres
 FROM genres
 );
 """
 
-movie_reviewers = """
+MOVIE_REVIEWERS = """
 SELECT reviewer.rev_name, rating.rev_stars, movie.mov_title
 FROM rating
 LEFT JOIN reviewer ON rating.rev_id = reviewer.rev_id
@@ -49,14 +49,14 @@ def execute_queries(engine: Engine) -> None:
 
     truncate_tables(engine, tables)
     queries = [
-        movies_per_year,
-        number_of_actors_per_movie,
-        number_of_different_movie_genres,
+        MOVIES_PER_YEAR,
+        NUMBER_OF_ACTORS_PER_MOVIE,
+        NUMBER_OF_DIFFERENT_MOVIE_GENRES,
     ]
     for query in queries:
         conn.execute(text(query))
         conn.commit()
 
     # execute query
-    result = conn.execute(text(movie_reviewers)).fetchall()
+    result = conn.execute(text(MOVIE_REVIEWERS)).fetchall()
     print(result)

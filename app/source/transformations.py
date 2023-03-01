@@ -7,7 +7,7 @@ from pandas import to_datetime, to_numeric
 
 from app.utils.mapping import date_columns_map, numeric_columns_map, pk_columns_map
 from app.utils.type_annotations import ColumnTypeMap, DataFrameMap
-from app.utils.validations import validate_pk
+from app.utils.validations import validate_primary_keys
 
 LOGGER = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ def apply_transformations(dfs: DataFrameMap) -> DataFrameMap:
         errors="coerce",
         format="%Y-%m-%d",
     )
-    validate_pk(dfs, pk_columns_map)
+    validate_primary_keys(dfs, pk_columns_map)
     LOGGER.info("Transformations applied successfully.")
     return dfs
 
